@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C02_BeforeAfter {
+public class C02_JUnitIlkTest {
 
     @Test
     public void test02() {

@@ -20,7 +20,7 @@ public class C01_ClassWork {
         //2.Signin buttonuna tiklayin
         driver.findElement(By.id("signin_button")).click();
 
-        //3.Login alanine "username" yazdirin
+        //3.Login alanina "username" yazdirin
         //4.Password alanine "password" yazdirin
         //5.Sign in buttonuna tiklayin
         WebElement login = driver.findElement(By.cssSelector("input#user_login"));
