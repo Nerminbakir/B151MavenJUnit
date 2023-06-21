@@ -29,7 +29,7 @@ public class ActionsClassHomeWorkKONTROL extends TestBase {
         bekle(2);
 
         //    4- Popup mesajini yazdirin
-        System.out.println(driver.switchTo().alert().getText());
+        System.out.println("Popup Mesajı : " + driver.switchTo().alert().getText());
 
         //    5- Popup'i tamam diyerek kapatin
         driver.switchTo().alert().accept();
@@ -37,19 +37,19 @@ public class ActionsClassHomeWorkKONTROL extends TestBase {
 
         //    6- “Click and hold" kutusuna basili tutun
         WebElement clickAndHold = driver.findElement(By.xpath("//div[@id='click-box']"));
-        actions.clickAndHold(clickAndHold);
+        actions.clickAndHold(clickAndHold).perform();
         bekle(2);
 
         //    7-“Click and hold" kutusunda cikan yaziyi yazdirin
-        System.out.println(clickAndHold.getText());
+        System.out.println("Click and Hold Yazısı : " + clickAndHold.getText());
 
         //    8- “Double click me" butonunu cift tiklayin. Tıklandığını test edin
         WebElement doubleClickMe = driver.findElement(By.xpath("//h2[text()='Double Click Me!']"));
         actions.doubleClick(doubleClickMe).perform();
         bekle(2);
 
-        String actualClass=doubleClickMe.getAttribute("class");
-        String expectedClass="h2[text()='Double Click Me!";
-        Assert.assertEquals(expectedClass,actualClass);
+        String actualClass = doubleClickMe.getAttribute("class");
+        String expectedClass = "div-double-click double";
+        Assert.assertEquals(expectedClass, actualClass);
     }
 }

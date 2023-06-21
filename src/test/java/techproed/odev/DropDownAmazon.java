@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
+import java.util.List;
 
 
 public class DropDownAmazon {
@@ -38,9 +39,11 @@ public class DropDownAmazon {
         //- Test 1
         //Arama kutusunun yanindaki kategori menusundeki kategori sayisinin 45 oldugunu test edin
         WebElement category = driver.findElement(By.xpath("//*[@id='searchDropdownBox']"));
-        Dimension kategori = category.getSize();
+        Select select = new Select(category);
 
-        Assert.assertFalse(kategori.equals(45));
+        List<WebElement> kategori = select.getOptions();
+        Assert.assertFalse(kategori.size()==45);
+        System.out.println(kategori.size());
     }
 
     @Test
