@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
-public class ActionsClassHomeWorkKONTROL extends TestBase {
+public class ActionsClassHomeWork extends TestBase {
 
     @Test
     public void test01() {
@@ -44,12 +44,12 @@ public class ActionsClassHomeWorkKONTROL extends TestBase {
         System.out.println("Click and Hold Yazısı : " + clickAndHold.getText());
 
         //    8- “Double click me" butonunu cift tiklayin. Tıklandığını test edin
-        WebElement doubleClickMe = driver.findElement(By.xpath("//h2[text()='Double Click Me!']"));
+        WebElement doubleClickMe = driver.findElement(By.xpath("//div[@id='double-click']"));
         actions.doubleClick(doubleClickMe).perform();
         bekle(2);
 
-        String actualClass = doubleClickMe.getAttribute("class");
-        String expectedClass = "div-double-click double";
-        Assert.assertEquals(expectedClass, actualClass);
+        String actual = doubleClickMe.getAttribute("class");
+        String expected = "div-double-click double";
+        Assert.assertEquals(expected, actual);
     }
 }
