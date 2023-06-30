@@ -96,7 +96,7 @@ public class C03_AlertMethods extends TestBase {
         bekle(3);
 
         //    uyarıdaki metin kutusuna isminizi yazin,
-        alertPrompt("nermin");
+        sendKeysAlert("nermin");
 
         bekle(3);
 
