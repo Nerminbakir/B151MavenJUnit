@@ -14,7 +14,7 @@ public class C02_ExcelRead {
 
         // excel dosyasından veri okuyabilmemiz için;
         // 1) dosya yolunu alırız
-        String dosyaYolu = "src/test/java/resources/Excel.ods";
+        String dosyaYolu = "src/test/java/resources/Capitals.xlsx";
 
         // 2) Capitals dosyasını bizim sistemimize getirmeliyiz. Dosyayı okuyabilmek için akısa almalıyım
         FileInputStream fis = new FileInputStream(dosyaYolu);
@@ -23,7 +23,7 @@ public class C02_ExcelRead {
         Workbook workbook = WorkbookFactory.create(fis);
 
         // 4) sayfayı (sheet) secmeliyiz
-        Sheet sheet = workbook.getSheet("Sayfa1");
+        Sheet sheet = workbook.getSheet("Sheet1");
 
         // 5) satırı (row) secmeliyiz
         Row row = sheet.getRow(0); // 1. satir, index 0'dan baslar
@@ -39,10 +39,10 @@ public class C02_ExcelRead {
         // KISA YONTEM
 
         // 1. satir 1. sütundaki bilgiyi yazdırınız
-        String dosyaYolu = "src/test/java/resources/Capitals (2).xlsx";
+        String dosyaYolu = "src/test/java/resources/Capitals.xlsx";
         FileInputStream fis = new FileInputStream(dosyaYolu);
         Workbook workbook = WorkbookFactory.create(fis);
-        String satir1Sutun1 = workbook.getSheet("Sayfa1").getRow(0).getCell(0).toString();
+        String satir1Sutun1 = workbook.getSheet("Sheet1").getRow(0).getCell(0).toString();
         System.out.println(satir1Sutun1);
 
     }
@@ -51,14 +51,11 @@ public class C02_ExcelRead {
     public void readExcelTest03() throws IOException {
 
         // 1. satir 2. sütundaki hucreyi yazdırınız
-        String dosyaYolu = "src/test/java/resources/Capitals (2).xlsx";
+        String dosyaYolu = "src/test/java/resources/Capitals.xlsx";
         FileInputStream fis = new FileInputStream(dosyaYolu);
         Workbook workbook = WorkbookFactory.create(fis);
-        String satir1Sutun2 = workbook.getSheet("Sayfa1").getRow(0).getCell(1).toString();
+        String satir1Sutun2 = workbook.getSheet("Sheet1").getRow(0).getCell(1).toString();
         System.out.println(satir1Sutun2);
-
-
-
 
 
     }

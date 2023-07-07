@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -60,6 +61,34 @@ public abstract class TestBase {
         }
 
     }
+
+    //Selenium Wait/Explicit Wait
+    //visibilityOf(element) methodu
+    public void visibleWait(WebElement element,int saniye){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(saniye));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    //visibilityOfElementLocated(locator) methodu
+    public void visibleWait(By locator, int saniye){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(saniye));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    //AlertWait methodu
+    public void alertWait(int saniye){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(saniye));
+        wait.until(ExpectedConditions.alertIsPresent());
+    }
+
+    //FluentWait visible Methodu
+    public void visibleFluentWait(WebElement element,int saniye,int milisaniye){
+        new FluentWait<>(driver).withTimeout(Duration.ofSeconds(saniye)).
+                pollingEvery(Duration.ofMillis(milisaniye)).
+                until(ExpectedConditions.visibilityOf(element));
+    }
+
+
     //AcceptAlert
     public void alertAccept() {
         driver.switchTo().alert().accept();
@@ -98,11 +127,6 @@ public abstract class TestBase {
         select.selectByValue(value);
     }
 
-    public void visibleWait(WebElement element, int sayi) {
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(sayi));
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
 
     //SwitchTo Window-1
     public void switchToWindow(int index) {
@@ -181,8 +205,32 @@ public abstract class TestBase {
 
     }
 
+    public void scroll (WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",element);
+    }
 
+    public void scrollHome(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
 
+    }
 
+    public void scrollEnd(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+
+    }
+
+    public void sendKeysJS (WebElement element, String text){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].value='"+text+"'", element);
+    }
+
+    public void sendAttributeJS(WebElement element, String text){
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('value','"+text+"')",element);
+    }
 
 }
