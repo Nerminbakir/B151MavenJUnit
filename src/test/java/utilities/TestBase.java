@@ -46,9 +46,8 @@ public abstract class TestBase {
 
     @After
     public void tearDown() throws Exception {
-        extentReports = new ExtentReports();
-        extentReports.flush();
-        driver.quit();
+        bekle(3);
+       driver.quit();
     }
 
     //HARD WAIT (Bekleme Methodu)
@@ -205,32 +204,44 @@ public abstract class TestBase {
 
     }
 
-    public void scroll (WebElement element){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",element);
+    //Click Method
+    public void click(WebElement element){
+        try {
+            element.click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();",element);
+        }
     }
 
-    public void scrollHome(){
+    //JS Scroll WE Method
+    public void jsScrollWE(WebElement element){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
-
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    //JS Scroll END Method(Sayfanın altına)
     public void scrollEnd(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-
     }
 
-    public void sendKeysJS (WebElement element, String text){
+    //JS Scroll HOME Method(Sayfanın üstüne)
+    public void scrollHome(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].value='"+text+"'", element);
+        js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
     }
 
-    public void sendAttributeJS(WebElement element, String text){
-
+    //JS SendKeys() Method
+    public void jsSendKeys(String text,WebElement element){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].setAttribute('value','"+text+"')",element);
+        js.executeScript("arguments[0].value='"+text+"'",element);
+    }
+
+    //JS setAttribute() Method
+    public void jsSetAttribute(String attribute,String text,WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('"+attribute+"','"+text+"')",element);
     }
 
 }
